@@ -83,7 +83,8 @@ void printFormula(FormulaPtr formula) {
         }
 
         printFormula(formula->binaryData.r);
-        std::cout << ")sat       break;
+        std::cout << ")";
+        break;
     }
 }
 
@@ -101,8 +102,8 @@ unsigned max_depth(FormulaPtr formula, unsigned &m) {
         m=max(m, 1 + max_depth(formula->notData.f, m));
         return m;
     case Formula::Type::Binary:
-        m=max(m, max(1 + max_depth(formula->binaryData.l, m),
-                     1+ max_depth(formula->binaryData.r, m)));
+        m=max(m, 1 + max(max_depth(formula->binaryData.l, m),
+                     max_depth(formula->binaryData.r, m)));
         return m;
     }
 }
@@ -125,7 +126,7 @@ int main()
 
     FormulaPtr moja2=And(p0, p1);
     FormulaPtr moja3=Or(moja1, moja2);
-    printFormula(moja3); std::cout << std::endl;
+    printFormula(And(p1, moja3)); std::cout << std::endl;
     m=0;
     std::cout << max_depth(moja3, m) << std::endl;
 
