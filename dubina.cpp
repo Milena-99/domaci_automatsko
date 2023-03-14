@@ -92,6 +92,8 @@ unsigned max(unsigned m1, unsigned m2){
     return m1 > m2 ? m1 : m2;
 }
 
+
+// moglo je i jednostavnije, ali ovo je prva ideja 
 unsigned max_depth(FormulaPtr formula, unsigned &m) {
     switch(formula->type) {
     case Formula::Type::False:
@@ -106,6 +108,7 @@ unsigned max_depth(FormulaPtr formula, unsigned &m) {
                      max_depth(formula->binaryData.r, m)));
         return m;
     }
+    return -1;
 }
 
 
@@ -122,13 +125,13 @@ int main()
     unsigned m=0;
     std::cout << max_depth(F, m) << std::endl;
 
-    FormulaPtr moja1=And(p2,notp1);
+//    FormulaPtr moja1=And(p2,notp1);
 
-    FormulaPtr moja2=And(p0, p1);
-    FormulaPtr moja3=Or(moja1, moja2);
-    printFormula(And(p1, moja3)); std::cout << std::endl;
-    m=0;
-    std::cout << max_depth(moja3, m) << std::endl;
+  //  FormulaPtr moja2=And(p0, p1);
+  //  FormulaPtr moja3=Or(moja1, moja2);
+   // printFormula(And(p1, moja3)); std::cout << std::endl;
+   // m=0;
+   // std::cout << max_depth(moja3, m) << std::endl;
 
     return 0;
 }

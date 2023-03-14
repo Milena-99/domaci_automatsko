@@ -163,6 +163,8 @@ NormalForm readCNF(std::istream& inputStream, unsigned& atomCount) {
     }
     return formula;
 }
+
+//zakomentarisano sam naknadno videla da mi ne treba
 bool isPureLiteral(Literal l, NormalForm& f){
     //int ind=0;
     for(Clause &c: f){
