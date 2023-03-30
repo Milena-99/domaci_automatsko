@@ -308,7 +308,7 @@ int main() {
     L.functions["s"]=s;
     L.relations["="] = equals;
 
-    // Ex (even(x) & ~even(x))
+    // Ax (S(S(S(X)))=X)
     TermPtr x = std::make_shared<Term>(VariableData{"x"});
     TermPtr sX = std::make_shared<Term>(FunctionData{"s", {x}});
     TermPtr ssX = std::make_shared<Term>(FunctionData{"s", {sX}});
@@ -327,6 +327,7 @@ int main() {
         std::cout << evaluate(allEqualsX, L, val) << std::endl;
     }
 
+    // ~Ex (0=S(x))
     TermPtr zeroX = std::make_shared<Term>(FunctionData{"0", {}});  
     FormulaPtr f0SX= std::make_shared<Formula>(AtomData{"=", {zeroX, sX}});
     FormulaPtr existsEqualsX = std::make_shared<Formula>(QuantifierData{QuantifierData::Exists, "x", f0SX});
